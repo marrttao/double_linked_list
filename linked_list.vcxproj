@@ -160,7 +160,7 @@
     <ClInclude Include="linked_list\node.h" />
     <ClInclude Include="linked_list\node_abstraction.h" />
     <ClInclude Include="linked_list\linked_list_abstraction.h" />
-    <ClInclude Include="linked_list\single_linked_list.h" />
+    <ClInclude Include="linked_list\double_linked_list.h" />
     <ClInclude Include="linked_list\value.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

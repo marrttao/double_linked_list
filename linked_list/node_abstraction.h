@@ -4,15 +4,17 @@
 class IElement
 {
 public:
-    virtual ~IElement(){}
+    virtual ~IElement() {}
 };
 
-class INode 
+class INode
 {
 public:
     virtual ~INode() = default;
-    virtual void set_next(INode *node) = 0;
-    virtual INode *get_next() = 0;
+    virtual void set_next(INode* node) = 0;
+    virtual INode* get_next() = 0;
+    virtual void set_prev(INode* node) = 0;
+    virtual INode* get_prev() = 0;
     virtual IElement& get_value() = 0;
 };
 

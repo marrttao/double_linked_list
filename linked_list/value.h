@@ -1,6 +1,7 @@
 #ifndef VALUE_H
 #define VALUE_H
 
+#include <iostream>
 #include "node_abstraction.h"
 
 template <typename T>
@@ -17,7 +18,7 @@ public:
 };
 
 template <typename T>
-std::ostream& operator<<(std::ostream& out, Value<T> val)
+std::ostream& operator<<(std::ostream& out, const Value<T>& val)
 {
     out << val.get_value();
     return out;

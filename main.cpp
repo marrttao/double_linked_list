@@ -1,19 +1,6 @@
 #include <iostream>
-#include "linked_list/single_linked_list.h"
+#include "linked_list/double_linked_list.h"
 using namespace std;
-
-// DOUBLE LINKED LIST WILL BE SOON
-// DOUBLE LINKED LIST WILL BE SOON
-// DOUBLE LINKED LIST WILL BE SOON
-// DOUBLE LINKED LIST WILL BE SOON
-// DOUBLE LINKED LIST WILL BE SOON
-// DOUBLE LINKED LIST WILL BE SOON
-// DOUBLE LINKED LIST WILL BE SOON
-// DOUBLE LINKED LIST WILL BE SOON
-// DOUBLE LINKED LIST WILL BE SOON
-// DOUBLE LINKED LIST WILL BE SOON
-// DOUBLE LINKED LIST WILL BE SOON
-// DOUBLE LINKED LIST WILL BE SOON
 
 class Test
 {
@@ -22,32 +9,36 @@ public:
     Test(int number) : number(number) {}
 };
 
-ostream& operator<<(ostream& os, Test* test)
+ostream& operator<<(ostream& os, const Test& test)
 {
-    os << test->number;
+    os << test.number;
     return os;
 }
-
 
 class LinkedListProvider
 {
 public:
-    static void print(SingleLinkedList *list)
+    static void print(DoubleLinkedList* list)
     {
-        //get node->get_value() as Value<int> and call get_value() on it
+        if (list == nullptr) return;
+
         INode* temp = list->return_head();
         while (temp != nullptr)
         {
             Value<Test*>* val = dynamic_cast<Value<Test*>*>(&temp->get_value());
-            cout << *val << " ";
+            if (val != nullptr && val->get_value() != nullptr)
+            {
+                cout << *(val->get_value()) << " ";
+            }
             temp = temp->get_next();
         }
+        cout << endl;
     }
 };
 
 int main()
 {
-    SingleLinkedList * list = new SingleLinkedList();
+    DoubleLinkedList* list = new DoubleLinkedList();
     list->push_back(new Value<Test*>(new Test(1)));
     list->push_back(new Value<Test*>(new Test(2)));
     list->push_back(new Value<Test*>(new Test(3)));
@@ -55,7 +46,20 @@ int main()
 
     LinkedListProvider::print(list);
 
+    INode* temp = list->return_head();
+    while (temp != nullptr)
+    {
+        INode* next = temp->get_next();
+        Value<Test*>* val = dynamic_cast<Value<Test*>*>(&temp->get_value());
+        if (val != nullptr)
+        {
+            delete val->get_value();
+            delete val;
+        }
+        delete temp;
+        temp = next;
+    }
     delete list;
-    
+
     return 0;
 }

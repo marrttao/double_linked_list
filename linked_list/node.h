@@ -8,14 +8,24 @@ class Node : public INode
 private:
     IElement* value_ = nullptr;
     INode* next_ = nullptr;
+    INode* prev_ = nullptr;
+
 public:
-    void set_next(INode *node) override
+    void set_next(INode* node) override
     {
         this->next_ = node;
     }
-    INode *get_next() override
+    INode* get_next() override
     {
         return this->next_;
+    }
+    void set_prev(INode* node) override
+    {
+        this->prev_ = node;
+    }
+    INode* get_prev() override
+    {
+        return this->prev_;
     }
     IElement& get_value() override
     {
